@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chosungood/screens/kakaologin.dart';
+import 'handle_kakao_login.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class SplashScreen extends StatelessWidget {
     // 초기화 작업이 끝나면 원하는 화면으로 전환
     Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => LoginPage(handleKakaoLogin: handleKakaoLogin)),
       );
     });
 

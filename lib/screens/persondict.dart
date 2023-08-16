@@ -25,16 +25,16 @@ class DashBoard extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 4,
                 ),
-                itemCount: 4,
+                itemCount: 64,
                 itemBuilder: (context, gridIndex) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        Image.asset('assets/samples/64sample_3.png'),
+                        Image.asset('assets/images/creeper.png'),
                         Container(
                           width: double.infinity,
                           height: double.infinity,
