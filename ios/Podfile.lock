@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (5.7.1)
+  - Flutter (1.0.0)
+  - kakao_flutter_sdk_common (1.5.0):
+    - Flutter
+  - KakaoSDKCommon (2.15.0):
+    - KakaoSDKCommon/Common (= 2.15.0)
+    - KakaoSDKCommon/Network (= 2.15.0)
+  - KakaoSDKCommon/Common (2.15.0)
+  - KakaoSDKCommon/Network (2.15.0):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.15.0)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - kakao_flutter_sdk_common (from `.symlinks/plugins/kakao_flutter_sdk_common/ios`)
+  - KakaoSDKCommon
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - KakaoSDKCommon
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  kakao_flutter_sdk_common:
+    :path: ".symlinks/plugins/kakao_flutter_sdk_common/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
+
+SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  kakao_flutter_sdk_common: ceb36a134b53ae973da184f67f39993142377af4
+  KakaoSDKCommon: 89d863b7f34398e6fb93a0acb28a204908551a39
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+  webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
+
+PODFILE CHECKSUM: fc9939d309d559160c5bb31a18e286fe098d0f13
+
+COCOAPODS: 1.12.1

@@ -1,6 +1,13 @@
+import 'package:chosungood/screens/kakaologin.dart';
+import 'package:chosungood/screens/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 void main() {
+  KakaoSdk.init(
+    nativeAppKey: 'e6e9b57f504d038570209f2d74e89b38',
+    javaScriptAppKey: 'e6e9b57f504d038570209f2d74e89b38',
+  );
   runApp(const MyApp());
 }
 
@@ -12,12 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false, // 디버그 딱지 숨기기
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: SplashScreen(),
     );
   }
 }

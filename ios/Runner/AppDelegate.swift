@@ -9,7 +9,8 @@ import KakaoSDKCommon
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-      KakaoSDK.initSDK(appKey: "${NATIVE_APP_KEY}")
+      KakaoSDK.initSDK(appKey: "e6e9b57f504d038570209f2d74e89b38")
+      //e6e9b57f504d038570209f2d74e89b38
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
