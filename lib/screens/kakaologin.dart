@@ -7,7 +7,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Love chosun kakao login page'),
+        title: Text('조선굿'),
       ),
       body: Align(
         alignment: Alignment(0, 0.5), // 화면의 1/4 위치로 설정 (-1.0 ~ 1.0 사이의 값을 사용)
