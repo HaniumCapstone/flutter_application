@@ -2,6 +2,8 @@ import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:chosungood/screens/calendar.dart';
+
 
 
 void handleKakaoLogin(BuildContext context) async {
@@ -36,7 +38,7 @@ void handleKakaoLogin(BuildContext context) async {
         await UserApi.instance.loginWithKakaoAccount();
         print('카카오계정으로 로그인 성공');
         Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DashBoard()), // HomePage로 전환
+          MaterialPageRoute(builder: (context) => CalendarPage()), // HomePage로 전환
         );
 
       } catch (error) {
