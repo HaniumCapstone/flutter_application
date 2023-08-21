@@ -3,6 +3,7 @@ import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/material.dart';
 import 'package:chosungood/screens/kakaologin.dart';
 import '../utiles/handle_kakao_login.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:provider/provider.dart';
 import 'package:chosungood/providers/profile.dart';
@@ -46,10 +47,18 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     final cpProfile = Provider.of<CPProfile>(context);
-
-    // 초기화 작업이 끝나면 원하는 화면으로 전환
     print(cpProfile.isSingIn);
     print(cpProfile.mbti);
+
+    // 초기화 작업이 끝나면 원하는 화면으로 전환
+
+    String withoutLogin = dotenv.env['WITHOUT_LOGIN']!;
+    if (withoutLogin == 'true') {
+      cpProfile.dummySignin();
+      // ignore: use_build_context_synchronously
+      // Provider.of<CPProfile>(context).dummySignin();
+      // return const DashBoard();
+    }
 
     if (cpProfile.isSingIn && cpProfile.mbti != '') {
       return const DashBoard();
