@@ -1,20 +1,26 @@
-
+import 'dart:convert';
 
 import 'package:chosungood/screens/persondict.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:provider/provider.dart';
+import 'package:chosungood/providers/profile.dart';
+
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
-  final Function(BuildContext) handleKakaoLogin;
+  const LoginPage({super.key, required this.handleKakaoLogin});
 
-  LoginPage({required this.handleKakaoLogin});
+  final Function(BuildContext) handleKakaoLogin;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Love Korean History'),
+        title: const Text('Love Korean History'),
       ),
       body: Column(
         children: [
@@ -23,7 +29,7 @@ class LoginPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.topCenter,
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 8.0,
                   crossAxisSpacing: 8.0,
@@ -45,10 +51,34 @@ class LoginPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0), // 양 옆 여백 설정
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0), // 양 옆 여백 설정
                 child: InkWell(
-                  onTap: () {
-                    handleKakaoLogin(context);
+                  onTap: () async {
+                    String token = await handleKakaoLogin(context);
+
+                    try {
+                      String userAPIURL = dotenv.env['USER_API_URL']!;
+                      final url = Uri.parse("$userAPIURL/join");
+
+                      final response = await http.post(url, body: {
+                        'kAccessToken': token,
+                      });
+                      // ignore: use_build_context_synchronously
+                      context
+                          .read<CPProfile>()
+                          .signin(json.decode(response.body)['accessToken']);
+
+                      if (kDebugMode) {
+                        print('유저 가입/로그인 성공');
+                        print(response.body);
+                        print(json.decode(response.body));
+                      }
+                    } catch (error) {
+                      if (kDebugMode) {
+                        print('유저 로그인 실패 ');
+                      }
+                    }
                   },
                   child: Image.asset(
                       'assets/K_login_images/ko/kakao_login_large_wide.png'),
@@ -61,5 +91,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-
