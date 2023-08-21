@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-
 class DashBoard extends StatelessWidget {
+  const DashBoard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
       ),
       body: ListView.builder(
         itemCount: 1,
@@ -14,8 +15,8 @@ class DashBoard extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Text(
                   '인물도감',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -23,8 +24,8 @@ class DashBoard extends StatelessWidget {
               ),
               GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
                 ),
                 itemCount: 64,
