@@ -5,6 +5,7 @@ class Person {
   final String? death_Date; // Nullable type
   final String? era; // Nullable type
   final String? description; // Nullable type
+  final String imageFileName;
 
   Person({
     required this.name,
@@ -13,5 +14,6 @@ class Person {
     this.death_Date,
     this.era,
     this.description,
+    required this.imageFileName,
   });
 }

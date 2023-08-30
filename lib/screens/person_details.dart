@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'person.dart';
+import 'package:path_provider/path_provider.dart';
 
 class PersonDetailsPage extends StatelessWidget {
   final Person person;
@@ -17,6 +18,15 @@ class PersonDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: 200, // 원하는 이미지 높이
+              child: Image.asset(
+                'assets/per_images/${person.imageFileName}',
+                fit: BoxFit.cover, // 이미지를 가로, 세로 비율에 맞게 확대/축소
+              ),
+            ),
             Text(
               '이름: ${person.name}',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

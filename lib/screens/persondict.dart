@@ -1,6 +1,6 @@
-import 'package:chosungood/screens/person.dart';
-import 'package:chosungood/screens/person_details.dart';
 import 'package:flutter/material.dart';
+import 'person.dart';
+import 'person_details.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -11,30 +11,32 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   List<Person> people = [];
-  bool _isLoading = true; // Add this line
+  List<String> personImageFileNames = List.generate(19, (index) => 'img${index + 1}.jpeg');
+  bool _isLoading = true;
 
   Future<void> fetchPeopleFromDatabase() async {
-    final response = await http.get(Uri.parse('http://18.188.95.144/person_data_return.php')); // Replace with your API endpoint
+    final response = await http.get(Uri.parse('http://18.188.95.144/person_data_return.php'));
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
       final List<Person> fetchedPeople = [];
-
+      int index=0;
       for (var personData in jsonData) {
         final person = Person(
           name: personData['name'] ?? '',
           mbti: personData['mbti'] ?? '',
-          birth_Date: personData['birth_date'] ?? '', // Already a String
-          death_Date: personData['death_date'] ?? '', // Already a String
+          birth_Date: personData['birth_date'] ?? '',
+          death_Date: personData['death_date'] ?? '',
           era: personData['era'] ?? '',
           description: personData['description'] ?? '',
+          imageFileName: personImageFileNames[index % personImageFileNames.length],
         );
         fetchedPeople.add(person);
+        index++;
       }
-
 
       setState(() {
         people = fetchedPeople;
-        _isLoading = false; // Set _isLoading to false when data is fetched
+        _isLoading = false;
       });
       print("Received data: $jsonData");
     }
@@ -50,22 +52,23 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('인물사전'),
       ),
       body: _isLoading
           ? Center(
-        child: CircularProgressIndicator(), // Show loading indicator while fetching data
+        child: CircularProgressIndicator(),
       )
-        : GridView.builder(
+          : GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, // 2개의 아이템을 가로로 나열
-          mainAxisSpacing: 15, // 아이템들의 수직 간격
-          crossAxisSpacing: 15, // 아이템들의 수평 간격
+          crossAxisCount: 3,
+          mainAxisSpacing: 15,
+          crossAxisSpacing: 15,
         ),
-        padding: EdgeInsets.all(15), // Add padding around the GridView
+        padding: EdgeInsets.all(15),
         itemCount: people.length,
         itemBuilder: (context, index) {
           final person = people[index];
+          final personImageFileName = personImageFileNames[index % personImageFileNames.length];
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -83,9 +86,9 @@ class _DashBoardState extends State<DashBoard> {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/images/creeper.png',
-                    width: 80, // Set the desired width
-                    height: 80, // Set the desired height
+                    'assets/per_images/${personImageFileNames[index % personImageFileNames.length]}',
+                    width: 80,
+                    height: 80,
                   ),
                   SizedBox(height: 1),
                   Text(
@@ -97,9 +100,7 @@ class _DashBoardState extends State<DashBoard> {
             ),
           );
         },
-      )
-
-
+      ),
     );
   }
 }
