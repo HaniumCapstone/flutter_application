@@ -47,6 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     final cpProfile = Provider.of<CPProfile>(context);
+
     print(cpProfile.isSingIn);
     print(cpProfile.mbti);
 
