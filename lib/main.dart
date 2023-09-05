@@ -1,4 +1,3 @@
-import 'package:chosungood/screens/kakaologin.dart';
 import 'package:chosungood/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
