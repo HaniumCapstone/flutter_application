@@ -14,34 +14,22 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 유효한 토큰이 있을 경우 자동 로그인
     final cpProfile = Provider.of<CPProfile>(context);
     cpProfile.singinWithToken();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Love Korean History'),
-      ),
       body: Column(
         children: [
           Flexible(
             flex: 3,
             child: Align(
               alignment: Alignment.topCenter,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 8.0,
-                  crossAxisSpacing: 8.0,
+              child: Container(
+                color: Colors.white,
+                child: Center(
+                  child: Image.asset('assets/images/duguncho.png'),
                 ),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Container(
-                    color: Colors.grey,
-                    child: Center(
-                      child: Image.asset('assets/images/tiger.png'),
-                    ),
-                  );
-                },
               ),
             ),
           ),

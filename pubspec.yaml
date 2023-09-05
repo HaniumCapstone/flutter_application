@@ -61,6 +61,7 @@ flutter:
     - assets/images/tiger.png
     - assets/K_login_images/ko/kakao_login_large_wide.png
     - assets/images/creeper.png
+    - assets/images/duguncho.png
     - assets/config/.env
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
