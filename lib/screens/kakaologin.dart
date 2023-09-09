@@ -1,11 +1,7 @@
 import 'dart:convert';
-
-import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:chosungood/providers/profile.dart';
 
@@ -18,31 +14,22 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 유효한 토큰이 있을 경우 자동 로그인
+    final cpProfile = Provider.of<CPProfile>(context);
+    cpProfile.singinWithToken();
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Love Korean History'),
-      ),
       body: Column(
         children: [
           Flexible(
             flex: 3,
             child: Align(
               alignment: Alignment.topCenter,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 8.0,
-                  crossAxisSpacing: 8.0,
+              child: Container(
+                color: Colors.white,
+                child: Center(
+                  child: Image.asset('assets/images/duguncho.png'),
                 ),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Container(
-                    color: Colors.grey,
-                    child: Center(
-                      child: Image.asset('assets/images/tiger.png'),
-                    ),
-                  );
-                },
               ),
             ),
           ),
@@ -55,9 +42,8 @@ class LoginPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 16.0), // 양 옆 여백 설정
                 child: InkWell(
                   onTap: () async {
-                    String token = await handleKakaoLogin(context);
-
                     try {
+                      String token = await handleKakaoLogin(context);
                       String userAPIURL = dotenv.env['USER_API_URL']!;
                       final url = Uri.parse("$userAPIURL/join");
 
