@@ -1,4 +1,5 @@
 class Person {
+  final String? c_id; //character_id
   final String? name;
   final String? mbti; // Nullable type
   final String? birth_Date; // Nullable type
@@ -8,6 +9,7 @@ class Person {
   final String imageFileName;
 
   Person({
+    required this.c_id,
     required this.name,
     this.mbti,
     this.birth_Date,

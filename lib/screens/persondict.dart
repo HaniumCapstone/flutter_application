@@ -22,6 +22,7 @@ class _DashBoardState extends State<DashBoard> {
       int index=0;
       for (var personData in jsonData) {
         final person = Person(
+          c_id: personData['character_id'] ?? '',
           name: personData['name'] ?? '',
           mbti: personData['mbti'] ?? '',
           birth_Date: personData['birth_date'] ?? '',

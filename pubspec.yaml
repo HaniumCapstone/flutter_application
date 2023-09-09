@@ -38,6 +38,7 @@ dependencies:
   kakao_flutter_sdk: ^1.5.0
   http: ^1.1.0
   path_provider: ^2.0.5
+  url_launcher: ^6.0.6 # 원하는 버전을 사용하세요
 
 dev_dependencies:
   flutter_test:
