@@ -1,58 +1,113 @@
 import 'package:flutter/material.dart';
+import 'person.dart';
+import 'person_details.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class DashBoard extends StatelessWidget {
-  const DashBoard({super.key});
+class DashBoard extends StatefulWidget {
+  @override
+  _DashBoardState createState() => _DashBoardState();
+}
+
+class _DashBoardState extends State<DashBoard> {
+  List<Person> people = [];
+  List<String> personImageFileNames = List.generate(19, (index) => 'img${index + 1}.jpeg');
+  bool _isLoading = true;
+
+  Future<void> fetchPeopleFromDatabase() async {
+    final response = await http.get(Uri.parse('http://18.188.95.144/person_data_return.php'));
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
+      final List<Person> fetchedPeople = [];
+      int index=0;
+      for (var personData in jsonData) {
+        final person = Person(
+          c_id: personData['character_id'] ?? '',
+          name: personData['name'] ?? '',
+          mbti: personData['mbti'] ?? '',
+          birth_Date: personData['birth_date'] ?? '',
+          death_Date: personData['death_date'] ?? '',
+          era: personData['era'] ?? '',
+          description: personData['description'] ?? '',
+          imageFileName: personImageFileNames[index % personImageFileNames.length],
+        );
+        fetchedPeople.add(person);
+        index++;
+      }
+
+      setState(() {
+        people = fetchedPeople;
+        _isLoading = false;
+      });
+      print("Received data: $jsonData");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchPeopleFromDatabase();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: Text('인물사전'),
       ),
-      body: ListView.builder(
-        itemCount: 1,
+      body: _isLoading
+          ? Center(
+        child: CircularProgressIndicator(),
+      )
+          : GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 15,
+          crossAxisSpacing: 15,
+        ),
+        padding: EdgeInsets.all(15),
+        itemCount: people.length,
         itemBuilder: (context, index) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  '인물도감',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          final person = people[index];
+          final personImageFileName = personImageFileNames[index % personImageFileNames.length];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PersonDetailsPage(person: person),
                 ),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black, width: 2),
               ),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                ),
-                itemCount: 64,
-                itemBuilder: (context, gridIndex) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Image.asset('assets/images/creeper.png'),
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black, width: 2),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/per_images/${personImageFileNames[index % personImageFileNames.length]}',
+                    width: 80,
+                    height: 80,
+                  ),
+                  SizedBox(height: 1),
+                  Text(
+                    person.name ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: DashBoard(),
+  ));
 }
