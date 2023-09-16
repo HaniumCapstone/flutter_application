@@ -1,3 +1,4 @@
+import 'package:chosungood/screens/homepage.dart';
 import 'package:chosungood/screens/mbti_input.dart';
 import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/foundation.dart';
@@ -65,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     if (cpProfile.isSingIn && cpProfile.mbti != '') {
-      return const DashBoard();
+      return const HomePage();
     } else if (cpProfile.isSingIn && cpProfile.mbti == '') {
       return const MBTIInput();
     } else {
