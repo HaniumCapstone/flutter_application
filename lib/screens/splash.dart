@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     if (cpProfile.isSingIn && cpProfile.mbti != '') {
-      return const DashBoard();
+      return DashBoard();
     } else if (cpProfile.isSingIn && cpProfile.mbti == '') {
       return const MBTIInput();
     } else {

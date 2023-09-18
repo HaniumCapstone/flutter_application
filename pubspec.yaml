@@ -42,6 +42,7 @@ dependencies:
   url_launcher: ^6.0.6 # 원하는 버전을 사용하세요
   provider: ^6.0.5
   shared_preferences: ^2.2.1
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
