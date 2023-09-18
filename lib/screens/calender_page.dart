@@ -31,14 +31,32 @@ class _CalendarPageState extends State<CalendarPage> {
   void initState() {
     super.initState();
     _events = {
-      DateTime(2023, 9, 13): ['이벤트 1'],
-      DateTime(2023, 9, 19): ['now event'],
-      DateTime(2023, 9, 20): ['이벤트 2'],
-      DateTime(2023, 9, 18): ['now event'],
-      DateTime(2023, 10, 13): ['이벤트 1'],
-      DateTime(2023, 8, 19): ['now event'],
-      DateTime(2023, 8, 20): ['이벤트 2'],
-      DateTime(2023, 10, 18): ['now event'],
+      DateTime(2023, 5, 15): ['세종대왕 생일'],
+      DateTime(2023, 3, 30): ['세종대왕 기일'],
+      DateTime(2023, 8, 5): ['다산 정약용 생일'],
+      DateTime(2023, 4, 7): ['다산 정약용 기일'],
+      DateTime(2023, 10, 28): ['정조 생일'],
+      DateTime(2023, 8, 18): ['정조 기일'],
+      DateTime(2023, 2, 27): ['율곡이이 기일'],
+      DateTime(2023, 10, 26): ['율곡이이 생일'],
+      DateTime(2023, 11,3 ): ['허균 생일'],
+      DateTime(2023, 8,24 ): ['허균 기일'],
+      DateTime(2023, 11,23 ): ['연산군 생일'],
+      DateTime(2023, 11,20 ): ['연산군 기일'],
+      DateTime(2023, 4,28 ): ['이순신 생일'],
+      DateTime(2023, 12,16 ): ['이순신 기일'],
+      DateTime(2023, 10,31 ): ['영조 생일'],
+      DateTime(2023, 4,22 ): ['영조 기일'],
+      DateTime(2023, 6,13 ): ['태종 이방원 생일'],
+      DateTime(2023, 5,30 ): ['태종 이방원 기일'],
+      DateTime(2023, 12,5 ): ['신사임당 생일'],
+      DateTime(2023, 5,17 ): ['신사임당 기일'],
+      DateTime(2023, 6,4 ): ['광해군 생일'],
+      DateTime(2023, 8,7 ): ['광해군 기일'],
+      DateTime(2023, 7,3 ): ['효종 생일'],
+      DateTime(2023, 6,23 ): ['효종 기일'],
+      DateTime(2023, 8,19 ): ['성종 생일'],
+      DateTime(2023, 1,19 ): ['성종 기일'],
     };
 
     // 이벤트 날짜를 정렬
@@ -125,14 +143,6 @@ class _CalendarPageState extends State<CalendarPage> {
                 _showDateDetailsDialog(selectedDay);
               },
             ),
-            if (_selectedDay != null)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  _eventDetails,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
             if (_calendarFormat == CalendarFormat.month)
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -144,6 +154,15 @@ class _CalendarPageState extends State<CalendarPage> {
                       style: TextStyle(fontSize: 16),
                     );
                   }).toList(),
+                ),
+              ),
+            SizedBox(height: 20),
+            if (_selectedDay != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  _eventDetails,
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
           ],
