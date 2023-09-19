@@ -143,6 +143,14 @@ class _CalendarPageState extends State<CalendarPage> {
                 _showDateDetailsDialog(selectedDay);
               },
             ),
+
+            if(_selectedDay != null)
+              Padding(padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  '${_focusedDay.month}월의 이벤트',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
             if (_calendarFormat == CalendarFormat.month)
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -157,9 +165,17 @@ class _CalendarPageState extends State<CalendarPage> {
                 ),
               ),
             SizedBox(height: 20),
+            if(_selectedDay != null)
+              Padding(padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '${_selectedDay?.year}-${_selectedDay?.month}-${_selectedDay?.day}일 이벤트',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              ),
             if (_selectedDay != null)
               Padding(
                 padding: const EdgeInsets.all(8.0),
+
                 child: Text(
                   _eventDetails,
                   style: TextStyle(fontSize: 16),
