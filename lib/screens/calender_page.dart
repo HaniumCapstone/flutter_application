@@ -147,7 +147,7 @@ class _CalendarPageState extends State<CalendarPage> {
             if(_selectedDay != null)
               Padding(padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '${_focusedDay.month}월의 이벤트',
+                  '▶ ${_focusedDay.month}월의 이벤트',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -158,17 +158,17 @@ class _CalendarPageState extends State<CalendarPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: _sortedEventDates.map((date) {
                     return Text(
-                      '${date.year}-${date.month}-${date.day}: ${_events[date]!.join(", ")}',
-                      style: TextStyle(fontSize: 16),
+                      ' ▾ ${date.year}-${date.month}-${date.day}: ${_events[date]!.join(", ")}',
+                      style: TextStyle(fontSize: 18),
                     );
                   }).toList(),
                 ),
               ),
-            SizedBox(height: 20),
+            SizedBox(height: 16),
             if(_selectedDay != null)
               Padding(padding: const EdgeInsets.all(8.0),
               child: Text(
-                '${_selectedDay?.year}-${_selectedDay?.month}-${_selectedDay?.day}일 이벤트',
+                '▶ ${_selectedDay?.year}-${_selectedDay?.month}-${_selectedDay?.day}일 이벤트',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               ),
@@ -177,7 +177,7 @@ class _CalendarPageState extends State<CalendarPage> {
                 padding: const EdgeInsets.all(8.0),
 
                 child: Text(
-                  _eventDetails,
+                  ' ▾ ${_eventDetails}',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
