@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:chosungood/screens/calender_page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'mypage.dart';
 import 'sites.dart'; // HistoricSite 클래스를 import
 
 class SiteDetailPage extends StatelessWidget {
@@ -81,10 +82,17 @@ class SiteDetailPage extends StatelessWidget {
                       onPressed: () {
                         // 두 번째 버튼 눌렀을 때 수행할 동작 추가
                         // 두 번째 버튼 눌렀을 때 KakaoMapPage로 이동하는 코드
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyPage()),
+                        );
+                        /*
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => CalendarPage()),
                         );
+                         */
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
