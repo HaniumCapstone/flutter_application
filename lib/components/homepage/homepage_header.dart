@@ -1,5 +1,6 @@
 import 'package:chosungood/components/shared/cr_button.dart';
 import 'package:chosungood/components/shared/friendship_bar.dart';
+import 'package:chosungood/providers/profile.dart';
 import 'package:chosungood/screens/mypage.dart';
 import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HomepageHeader extends StatelessWidget {
-  final String character;
+  final Character character;
 
   const HomepageHeader(String s, {super.key, required this.character});
 
@@ -31,16 +32,16 @@ class HomepageHeader extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "ESTP",
-                      style: TextStyle(
+                    Text(
+                      character.mbti,
+                      style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           color: Colors.black,
                           decoration: TextDecoration.none,
                           fontSize: 16.0),
                     ),
                     Text(
-                      character,
+                      character.name,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,

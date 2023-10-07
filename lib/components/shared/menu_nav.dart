@@ -1,4 +1,6 @@
 import 'package:chosungood/components/shared/cr_button.dart';
+import 'package:chosungood/screens/calender_page.dart';
+import 'package:chosungood/screens/kakaomap.dart';
 import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,8 @@ class MenuNav extends StatelessWidget {
           child: CrButton(
             'mapBtn',
             onPressed: () {
-              // 지도 페이지 머지하면
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => KakaoMapPage()));
             },
             text: '지도',
           ),
@@ -37,7 +40,8 @@ class MenuNav extends StatelessWidget {
           child: CrButton(
             'calBtn',
             onPressed: () {
-              // 캘린더 페이지 머지하면
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CalendarPage()));
             },
             text: '캘린더',
           ),
