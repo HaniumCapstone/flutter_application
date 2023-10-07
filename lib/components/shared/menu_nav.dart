@@ -27,7 +27,7 @@ class MenuNav extends StatelessWidget {
             'charBtn',
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const DashBoard()));
+                  MaterialPageRoute(builder: (context) => DashBoard()));
             },
             text: '인물도감',
           ),

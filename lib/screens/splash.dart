@@ -1,6 +1,7 @@
 import 'package:chosungood/screens/homepage.dart';
 import 'package:chosungood/screens/mbti_input.dart';
 import 'package:chosungood/screens/persondict.dart';
+import 'package:chosungood/screens/target_character_input.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:chosungood/screens/kakaologin.dart';
@@ -54,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (kDebugMode) {
       print(cpProfile.isSingIn);
       print(cpProfile.mbti);
+      print(cpProfile.target);
     }
 
     // 초기화 작업이 끝나면 원하는 화면으로 전환
@@ -65,12 +67,16 @@ class _SplashScreenState extends State<SplashScreen> {
       // return const DashBoard();
     }
 
-    if (cpProfile.isSingIn && cpProfile.mbti != '') {
+    if (cpProfile.isSingIn &&
+        (cpProfile.mbti != '' && cpProfile.target != '')) {
       return const HomePage();
-    } else if (cpProfile.isSingIn && cpProfile.mbti == '') {
-      return const MBTIInput();
-    } else {
-      return const LoginPage(handleKakaoLogin: handleKakaoLogin);
     }
+    if (cpProfile.isSingIn && cpProfile.mbti == '') {
+      return const MBTIInput();
+    }
+    if (cpProfile.isSingIn && cpProfile.target == '') {
+      return const TargetCharacterInput();
+    }
+    return const LoginPage(handleKakaoLogin: handleKakaoLogin);
   }
 }

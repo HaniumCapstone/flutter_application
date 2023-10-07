@@ -1,5 +1,6 @@
 import 'package:chosungood/components/shared/cr_button.dart';
 import 'package:chosungood/components/shared/friendship_bar.dart';
+import 'package:chosungood/screens/mypage.dart';
 import 'package:chosungood/screens/persondict.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -49,7 +50,10 @@ class HomepageHeader extends StatelessWidget {
                     FriendshipBar("$character friendship", percent: 0.3)
                   ],
                 )),
-            CrButton('mypage button', text: 'MY', onPressed: () {})
+            CrButton('mypage button', text: 'MY', onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyPage()));
+            })
           ],
         ));
   }
