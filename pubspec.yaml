@@ -43,6 +43,7 @@ dependencies:
   provider: ^6.0.5
   shared_preferences: ^2.2.1
   percent_indicator: ^4.2.3
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
@@ -61,12 +62,12 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-  - assets/images/tiger.png
-  - assets/K_login_images/ko/kakao_login_large_wide.png
-  - assets/images/creeper.png
-  - assets/per_images/
-  - assets/images/duguncho.png
-  - assets/config/.env
+    - assets/images/tiger.png
+    - assets/K_login_images/ko/kakao_login_large_wide.png
+    - assets/images/creeper.png
+    - assets/per_images/
+    - assets/images/duguncho.png
+    - assets/config/.env
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
